@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect - Professional Messaging Network</title>
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #818CF8;
+            --primary-dark: #4338CA;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.5;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        /* App layout */
+        .app-container {
+            display: grid;
+            grid-template-columns: 70px 300px 1fr;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background-color: var(--gray-800);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            color: white;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .nav-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: transparent;
+            color: var(--gray-400);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 20px;
+            border: none;
+        }
+        
+        .nav-button:hover {
+            background-color: var(--gray-700);
+            color: white;
+        }
+        
+        .nav-button.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .profile-button {
+            margin-top: auto;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid var(--gray-700);
+        }
+        
+        /* Contacts list */
+        .contacts-panel {
+            background-color: white;
+            height: 100%;
+            border-right: 1px solid var(--gray-200);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+        
+        .search-bar {
+            margin: 15px 20px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 10px;
+            border: 1px solid var(--gray-300);
+            background-color: var(--gray-100);
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            padding: 0 20px;
+            margin-bottom: 15px;
+        }
+        
+        .filter-tab {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: var(--gray-600);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-tab.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .contacts-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 10px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 5px;
+        }
+        
+        .contact-item:hover {
+            background-color: var(--gray-100);
+        }
+        
+        .contact-item.active {
+            background-color: var(--gray-200);
+        }
+        
+        .contact-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--gray-300);
+            margin-right: 12px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .contact-avatar.online::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #10B981;
+            border-radius: 50%;
+            bottom: 0;
+            right: 0;
+            border: 2px solid white;
+        }
+        
+        .contact-info {
+            flex: 1;
+            overflow: hidden;
+        }
+        
+        .contact-name {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+        
+        .contact-preview {
+            font-size: 13px;
+            color: var(--gray-600);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .contact-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-left: 10px;
+        }
+        
+        .contact-time {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-bottom: 5px;
+        }
+        
+        .contact-badge {
+            background-color: var(--primary);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Chat area */
+        .chat-area {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+        }
+        
+        .chat-contact {
+            display: flex;
+            align-items: center;
+        }
+        
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--gray-300);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            font-weight: 600;
+        }
+        
+        .chat-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+        
+        .chat-status {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+        
+        .chat-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .action-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--gray-100);
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        
+        .action-button:hover {
+            background-color: var(--gray-200);
+            color: var(--gray-800);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: var(--gray-100);
+        }
+        
+        .message {
+            margin-bottom: 20px;
+            max-width: 70%;
+        }
+        
+        .message.received {
+            margin-right: auto;
+        }
+        
+        .message.sent {
+            margin-left: auto;
+        }
+        
+        .message-content {
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+        }
+        
+        .received .message-content {
+            background-color: white;
+            color: var(--gray-800);
+            border-bottom-left-radius: 4px;
+        }
+        
+        .sent .message-content {
+            background-color: var(--primary);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message-time {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .sent .message-time {
+            color: var(--gray-400);
+        }
+        
+        .chat-input-area {
+            padding: 15px 20px;
+            background-color: white;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+        }
+        
+        .attachment-button {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--gray-100);
+            color: var(--gray-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-right: 10px;
+            border: none;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--gray-300);
+            background-color: var(--gray-100);
+            font-size: 14px;
+            outline: none;
+            margin-right: 10px;
+        }
+        
+        .send-button {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+        }
+        
+        /* Profile section (hidden by default) */
+        .profile-section, .jobs-section, .job-detail-section {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            background-color: white;
+        }
+        
+        .profile-header {
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        .profile-fullname {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 5px;
+        }
+        
+        .profile-headline {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 15px;
+        }
+        
+        .profile-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .profile-button-action {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .profile-button-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        .profile-button-secondary {
+            background-color: var(--gray-100);
+            color: var(--gray-700);
+            border: none;
+        }
+        
+        .profile-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .profile-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 15px;
+        }
+        
+        .profile-info-item {
+            margin-bottom: 20px;
+        }
+        
+        .info-label {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 15px;
+            color: var(--gray-800);
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .skill-tag {
+            padding: 6px 12px;
+            background-color: var(--gray-100);
+            color: var(--gray-700);
+            border-radius: 15px;
+            font-size: 13px;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .app-container {
+                grid-template-columns: 70px 1fr;
+            }
+            
+            .contacts-panel {
+                position: absolute;
+                left: 70px;
+                width: 300px;
+                z-index: 10;
+                height: 100%;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .contacts-panel.active {
+                transform: translateX(0);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 60px;
+                flex-direction: row;
+                padding: 0 20px;
+                z-index: 20;
+            }
+            
+            .logo {
+                margin-bottom: 0;
+                margin-right: 20px;
+            }
+            
+            .nav-button {
+                margin-bottom: 0;
+                margin-right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .profile-button {
+                margin-top: 0;
+                margin-left: auto;
+            }
+            
+            .contacts-panel {
+                left: 0;
+                width: 100%;
+            }
+            
+            .chat-area, .profile-section {
+                padding-bottom: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Side navigation -->
+        <div class="sidebar">
+            <div class="logo">C</div>
+            
+            <button class="nav-button active">📩</button>
+            <button class="nav-button">👥</button>
+            <button class="nav-button">💼</button>
+            <button class="nav-button">📋</button>
+            <button class="nav-button">🔔</button>
+            
+            <div class="profile-button">JD</div>
+        </div>
+        
+        <!-- Contacts/Conversations panel -->
+        <div class="contacts-panel">
+            <div class="panel-header">
+                <div class="header-title">Messages</div>
+                <button class="action-button">✎</button>
+            </div>
+            
+            <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="Search connections...">
+            </div>
+            
+            <div class="filter-tabs">
+                <div class="filter-tab active">All</div>
+                <div class="filter-tab">Unread</div>
+                <div class="filter-tab">Important</div>
+            </div>
+            
+            <div class="contacts-list">
+                <!-- Contact 1 -->
+                <div class="contact-item active">
+                    <div class="contact-avatar">EA</div>
+                    <div class="contact-info">
+                        <div class="contact-name">Emma Anderson</div>
+                        <div class="contact-preview">I just sent over the proposal for the new project...</div>
+                    </div>
+                    <div class="contact-meta">
+                        <div class="contact-time">10:42 AM</div>
+                        <div class="contact-badge">2</div>
+                    </div>
+                </div>
+                
+                <!-- Contact 2 -->
+                <div class="contact-item">
+                    <div class="contact-avatar">RW</div>
+                    <div class="contact-info">
+                        <div class="contact-name">Robert Wilson</div>
+                        <div class="contact-preview">Could we schedule a call to discuss the timeline?</div>
+                    </div>
+                    <div class="contact-meta">
+                        <div class="contact-time">Yesterday</div>
+                    </div>
+                </div>
+                
+                <!-- Contact 3 -->
+                <div class="contact-item">
+                    <div class="contact-avatar">SL</div>
+                    <div class="contact-info">
+                        <div class="contact-name">Sarah Lee</div>
+                        <div class="contact-preview">Thanks for connecting! I'm interested in learning more about...</div>
+                    </div>
+                    <div class="contact-meta">
+                        <div class="contact-time">Thursday</div>
+                        <div class="contact-badge">1</div>
+                    </div>
+                </div>
+                
+                <!-- Contact 4 -->
+                <div class="contact-item">
+                    <div class="contact-avatar">MJ</div>
+                    <div class="contact-info">
+                        <div class="contact-name">Michael Johnson</div>
+                        <div class="contact-preview">Let me know when you have time to review the documents.</div>
+                    </div>
+                    <div class="contact-meta">
+                        <div class="contact-time">Wed</div>
+                    </div>
+                </div>
+                
+                <!-- Contact 5 -->
+                <div class="contact-item">
+                    <div class="contact-avatar">TG</div>
+                    <div class="contact-info">
+                        <div class="contact-name">Tech Group</div>
+                        <div class="contact-preview">James: Has anyone used the new framework yet?</div>
+                    </div>
+                    <div class="contact-meta">
+                        <div class="contact-time">Tue</div>
+                        <div class="contact-badge">5</div>
+                    </div>
+                </div>
+                
+                <!-- Contact 6 -->
+                <div class="contact-item">
+                    <div class="contact-avatar">LP</div>
+                    <div class="contact-info">
+                        <div class="contact-name">Lisa Park</div>
+                        <div class="contact-preview">I'd like to connect you with my colleague who...</div>
+                    </div>
+                    <div class="contact-meta">
+                        <div class="contact-time">Mar 28</div>
+                    </div>
+                </div>
+                
+                <!-- Contact 7 -->
+                <div class="contact-item">
+                    <div class="contact-avatar">DC</div>
+                    <div class="contact-info">
+                        <div class="contact-name">David Chen</div>
+                        <div class="contact-preview">Looking forward to our meeting next week!</div>
+                    </div>
+                    <div class="contact-meta">
+                        <div class="contact-time">Mar 25</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat/Message area -->
+        <div class="chat-area">
+            <div class="chat-header">
+                <div class="chat-contact">
+                    <div class="chat-avatar">EA</div>
+                    <div>
+                        <div class="chat-name">Emma Anderson</div>
+                        <div class="chat-status">Product Manager at TechCorp • Online</div>
+                    </div>
+                </div>
+                
+                <div class="chat-actions">
+                    <button class="action-button">📞</button>
+                    <button class="action-button">📹</button>
+                    <button class="action-button">ⓘ</button>
+                </div>
+            </div>
+            
+            <div class="chat-messages">
+                <!-- Received messages -->
+                <div class="message received">
+                    <div class="message-content">
+                        Hi John, hope you're doing well! I wanted to touch base about the upcoming project.
+                    </div>
+                    <div class="message-time">10:30 AM</div>
+                </div>
+                
+                <div class="message received">
+                    <div class="message-content">
+                        I just sent over the proposal for the new project. Could you take a look when you have a chance? I think it aligns with what we discussed in our last meeting.
+                    </div>
+                    <div class="message-time">10:32 AM</div>
+                </div>
+                
+                <!-- Sent messages -->
+                <div class="message sent">
+                    <div class="message-content">
+                        Hey Emma! I'm doing great, thanks for asking. I'll check the proposal right away.
+                    </div>
+                    <div class="message-time">10:35 AM</div>
+                </div>
+                
+                <div class="message sent">
+                    <div class="message-content">
+                        Just finished reviewing it. The proposal looks excellent! I especially like the timeline you've laid out.
+                    </div>
+                    <div class="message-time">10:40 AM</div>
+                </div>
+                
+                <!-- Received messages -->
+                <div class="message received">
+                    <div class="message-content">
+                        That's great to hear! Do you think we should schedule a team meeting to discuss implementation details?
+                    </div>
+                    <div class="message-time">10:42 AM</div>
+                </div>
+                
+                <div class="message received">
+                    <div class="message-content">
+                        Also, I noticed you have experience with similar projects. Any pitfalls we should watch out for?
+                    </div>
+                    <div class="message-time">10:42 AM</div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <button class="attachment-button">📎</button>
+                <input type="text" class="chat-input" placeholder="Type a message...">
+                <button class="send-button">➤</button>
+            </div>
+        </div>
+        
+        <!-- Profile section (hidden by default) -->
+        <div class="profile-section">
+            <div class="profile-header">
+                <div class="profile-pic">EA</div>
+                <h2 class="profile-fullname">Emma Anderson</h2>
+                <p class="profile-headline">Product Manager at TechCorp</p>
+                
+                <div class="profile-buttons">
+                    <button class="profile-button-action profile-button-primary">Connect</button>
+                    <button class="profile-button-action profile-button-secondary">Message</button>
+                </div>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-info-item">
+                    <h3 class="profile-section-title">About</h3>
+                    <p class="info-value">Experienced Product Manager with a passion for creating user-centered solutions. Specialized in leading cross-functional teams and delivering innovative products that solve real customer problems.</p>
+                </div>
+                
+                <div class="profile-info-item">
+                    <h3 class="profile-section-title">Experience</h3>
+                    <div class="info-label">Product Manager</div>
+                    <div class="info-value">TechCorp • 2020 - Present</div>
+                </div>
+                
+                <div class="profile-info-item">
+                    <div class="info-label">Associate Product Manager</div>
+                    <div class="info-value">InnoSoft • 2018 - 2020</div>
+                </div>
+                
+                <div class="profile-info-item">
+                    <h3 class="profile-section-title">Education</h3>
+                    <div class="info-label">MBA, Product Management</div>
+                    <div class="info-value">Business University • 2016 - 2018</div>
+                </div>
+                
+                <div class="profile-info-item">
+                    <h3 class="profile-section-title">Skills</h3>
+                    <div class="skill-tags">
+                        <div class="skill-tag">Product Strategy</div>
+                        <div class="skill-tag">User Research</div>
+                        <div class="skill-tag">Agile Methodologies</div>
+                        <div class="skill-tag">Market Analysis</div>
+                        <div class="skill-tag">Team Leadership</div>
+                        <div class="skill-tag">Product Roadmapping</div>
+                        <div class="skill-tag">Data Analytics</div>
+                    </div>
+                </div>
+                
+                <div class="profile-info-item">
+                    <h3 class="profile-section-title">Contact</h3>
+                    <div class="info-label">Email</div>
+                    <div class="info-value">emma.anderson@techcorp.com</div>
+                    
+                    <div class="info-label" style="margin-top: 10px;">Website</div>
+                    <div class="info-value">emmaanderson.portfolio</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Jobs Section -->
+    <div class="jobs-section">
+        <div class="panel-header">
+            <div class="header-title">Job Listings</div>
+            <button class="action-button">➕</button>
+        </div>
+        
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search jobs...">
+        </div>
+        
+        <div class="filter-tabs">
+            <div class="filter-tab active">All</div>
+            <div class="filter-tab">Recent</div>
+            <div class="filter-tab">Saved</div>
+        </div>
+        
+        <div class="jobs-list" style="padding: 10px 15px; overflow-y: auto; flex: 1;">
+            <!-- Job posting 1 -->
+            <div class="job-card" style="background-color: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="width: 50px; height: 50px; background-color: var(--gray-200); border-radius: 10px; margin-right: 12px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">TC</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 16px;">Senior Product Designer</div>
+                        <div style="font-size: 13px; color: var(--gray-600);">TechCorp • Remote • Posted 2d ago</div>
+                    </div>
+                </div>
+                <div style="font-size: 14px; margin-bottom: 12px;">
+                    We're looking for a talented Product Designer to join our team and help shape the future of our platform...
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <span style="padding: 5px 10px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 12px;">Full-time</span>
+                    <span style="padding: 5px 10px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 12px;">Design</span>
+                    <span style="padding: 5px 10px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 12px;">$90k-120k</span>
+                </div>
+            </div>
+            
+            <!-- Job posting 2 -->
+            <div class="job-card" style="background-color: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="width: 50px; height: 50px; background-color: var(--gray-200); border-radius: 10px; margin-right: 12px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">IS</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 16px;">Frontend Developer</div>
+                        <div style="font-size: 13px; color: var(--gray-600);">InnoSoft • Hybrid • Posted 3d ago</div>
+                    </div>
+                </div>
+                <div style="font-size: 14px; margin-bottom: 12px;">
+                    Join our growing team of developers building innovative web applications with modern technologies...
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <span style="padding: 5px 10px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 12px;">Full-time</span>
+                    <span style="padding: 5px 10px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 12px;">Development</span>
+                    <span style="padding: 5px 10px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 12px;">$80k-110k</span>
+                </div>
+            </div>
+            
+            <!-- Job posting 3 -->
+            <div class="job-card" style="background-color: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="width: 50px; height: 50px; background-color: var(--gray-200); border-radius: 10px; margin-right: 12px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">GS</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 16px;">Product Marketing Manager</div>
+                        <div style="font-size: 13px; color: var(--gray-600);">GrowSmart • On-site • Posted 1w ago</div>
+                    </div>
+                </div>
+                <div style="font-size: 14px; margin-bottom: 12px;">
+                    Lead our product marketing efforts and drive go-to-market strategies for our SaaS solutions...
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <span style="padding: 5px 10px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 12px;">Full-time</span>
+                    <span style="padding: 5px 10px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 12px;">Marketing</span>
+                    <span style="padding: 5px 10px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 12px;">$75k-95k</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Job Detail Section with Comments -->
+    <div class="job-detail-section">
+        <div class="panel-header" style="display: flex; align-items: center;">
+            <button class="action-button" style="margin-right: 15px;">←</button>
+            <div class="header-title">Job Details</div>
+            <button class="action-button" style="margin-left: auto;">🔖</button>
+        </div>
+        
+        <div style="flex: 1; overflow-y: auto;">
+            <div style="padding: 20px; border-bottom: 1px solid var(--gray-200);">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <div style="width: 60px; height: 60px; background-color: var(--gray-200); border-radius: 12px; margin-right: 15px; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-size: 18px;">TC</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 20px;">Senior Product Designer</div>
+                        <div style="font-size: 14px; color: var(--gray-600);">TechCorp • Remote • Posted 2d ago</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <span style="padding: 6px 12px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 13px;">Full-time</span>
+                    <span style="padding: 6px 12px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 13px;">Design</span>
+                    <span style="padding: 6px 12px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 13px;">$90k-120k</span>
+                </div>
+                
+                <div style="font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
+                    <p style="margin-bottom: 15px;">We're looking for a talented Product Designer to join our team and help shape the future of our platform. You'll work closely with product managers, engineers, and stakeholders to design intuitive and beautiful experiences for our users.</p>
+                    
+                    <h3 style="font-size: 16px; font-weight: 600; margin: 20px 0 10px;">Responsibilities:</h3>
+                    <ul style="padding-left: 20px; margin-bottom: 15px;">
+                        <li style="margin-bottom: 8px;">Create user-centered designs by understanding business requirements, user feedback, and research</li>
+                        <li style="margin-bottom: 8px;">Create wireframes, prototypes, and high-fidelity mockups</li>
+                        <li style="margin-bottom: 8px;">Design and ship new features and improvements to existing products</li>
+                        <li style="margin-bottom: 8px;">Collaborate with cross-functional teams throughout the design process</li>
+                    </ul>
+                    
+                    <h3 style="font-size: 16px; font-weight: 600; margin: 20px 0 10px;">Requirements:</h3>
+                    <ul style="padding-left: 20px; margin-bottom: 15px;">
+                        <li style="margin-bottom: 8px;">3+ years of experience in product design</li>
+                        <li style="margin-bottom: 8px;">Strong portfolio demonstrating your design thinking and process</li>
+                        <li style="margin-bottom: 8px;">Proficiency in design tools (Figma, Sketch, etc.)</li>
+                        <li style="margin-bottom: 8px;">Experience working in cross-functional teams</li>
+                    </ul>
+                </div>
+                
+                <div style="display: flex; gap: 10px;">
+                    <button style="flex: 1; padding: 10px; border-radius: 8px; border: none; background-color: var(--primary); color: white; font-weight: 500; cursor: pointer;">Apply Now</button>
+                    <button style="padding: 10px; border-radius: 8px; border: none; background-color: var(--gray-200); color: var(--gray-700); font-weight: 500; cursor: pointer;">Share</button>
+                    <button style="padding: 10px; border-radius: 8px; border: none; background-color: var(--gray-200); color: var(--gray-700); font-weight: 500; cursor: pointer;">Message</button>
+                </div>
+            </div>
+            
+            <!-- Comments section -->
+            <div style="padding: 20px;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 15px;">Comments (8)</h3>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; margin-bottom: 15px;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--gray-300); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 14px;">JD</div>
+                        <div style="flex: 1;">
+                            <input type="text" placeholder="Add a comment..." style="width: 100%; padding: 10px 15px; border-radius: 20px; border: 1px solid var(--gray-300); background-color: var(--gray-100); font-size: 14px; outline: none;">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comment 1 -->
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--gray-300); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 14px;">MK</div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 14px; margin-bottom: 2px;">Mia Kim <span style="font-weight: normal; color: var(--gray-500); font-size: 12px;">• UX Designer • 1d ago</span></div>
+                            <div style="font-size: 14px; margin-bottom: 8px;">I interviewed for a similar position here last month. Great team and culture! The design challenge was challenging but fair.</div>
+                            <div style="display: flex; gap: 15px;">
+                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Like (5)</div>
+                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Reply</div>
+                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Message</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Comment 2 -->
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--gray-300); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 14px;">TJ</div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 14px; margin-bottom: 2px;">Tom Jones <span style="font-weight: normal; color: var(--gray-500); font-size: 12px;">• Product Designer at DesignHub • 2d ago</span></div>
+                            <div style="font-size: 14px; margin-bottom: 8px;">Does anyone know if they're flexible on the experience requirement? I have 2 years of experience but a strong portfolio.</div>
+                            <div style="display: flex; gap: 15px;">
+                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Like (2)</div>
+                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Reply</div>
+                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Message</div>
+                            </div>
+                            
+                            <!-- Reply to Comment 2 -->
+                            <div style="margin: 12px 0 0 20px; display: flex;">
+                                <div style="width: 30px; height: 30px; border-radius: 50%; background-color: var(--gray-300); margin-right: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 12px;">SL</div>
+                                <div>
+                                    <div style="font-weight: 600; font-size: 13px; margin-bottom: 2px;">Sarah Lee <span style="font-weight: normal; color: var(--gray-500); font-size: 12px;">• Recruiter at TechCorp • 1d ago</span></div>
+                                    <div style="font-size: 13px; margin-bottom: 8px;">Hi Tom! We're definitely flexible for the right candidate. If you have a strong portfolio, I'd encourage you to apply. Feel free to message me directly if you have any questions.</div>
+                                    <div style="display: flex; gap: 15px;">
+                                        <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Like (3)</div>
+                                        <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Reply</div>
+                                        <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Message</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // This would normally contain interaction logic
+        // For this demo, it's a placeholder
+    </script>
+</body>
+</html>
