@@ -433,7 +433,7 @@
         }
         
         /* Profile section (hidden by default) */
-        .profile-section, .jobs-section, .job-detail-section {
+        .profile-section, .jobs-section, .job-detail-section, .feed-section {
             display: none;
             flex-direction: column;
             height: 100%;
@@ -940,6 +940,207 @@
         </div>
     </div>
     
+    <!-- Social Feed Section -->
+    <div class="feed-section">
+        <div class="panel-header">
+            <div class="header-title">Professional Feed</div>
+            <button class="action-button">⚙️</button>
+        </div>
+        
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search updates...">
+        </div>
+        
+        <div class="filter-tabs">
+            <div class="filter-tab active">All</div>
+            <div class="filter-tab">Trending</div>
+            <div class="filter-tab">Following</div>
+        </div>
+        
+        <!-- Post creation area -->
+        <div style="padding: 15px; border-bottom: 1px solid var(--gray-200);">
+            <div style="display: flex; margin-bottom: 15px;">
+                <div style="width: 45px; height: 45px; border-radius: 50%; background-color: var(--primary); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">JD</div>
+                <div style="flex: 1;">
+                    <input type="text" placeholder="Share something with your network..." style="width: 100%; padding: 12px 15px; border-radius: 20px; border: 1px solid var(--gray-300); background-color: var(--gray-100); font-size: 14px; outline: none;">
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between;">
+                <button style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 20px; border: none; background-color: var(--gray-100); color: var(--gray-700); font-size: 13px; cursor: pointer;">
+                    <span>📷</span> Photo
+                </button>
+                <button style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 20px; border: none; background-color: var(--gray-100); color: var(--gray-700); font-size: 13px; cursor: pointer;">
+                    <span>📹</span> Video
+                </button>
+                <button style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 20px; border: none; background-color: var(--gray-100); color: var(--gray-700); font-size: 13px; cursor: pointer;">
+                    <span>📝</span> Article
+                </button>
+                <button style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 20px; border: none; background-color: var(--gray-100); color: var(--gray-700); font-size: 13px; cursor: pointer;">
+                    <span>💼</span> Job
+                </button>
+            </div>
+        </div>
+        
+        <div style="flex: 1; overflow-y: auto; padding: 0 15px;">
+            <!-- Feed post 1 -->
+            <div style="background-color: white; border-radius: 12px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <div style="display: flex; margin-bottom: 15px;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background-color: var(--gray-300); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 16px;">EA</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 15px;">Emma Anderson</div>
+                        <div style="font-size: 13px; color: var(--gray-600);">Product Manager at TechCorp</div>
+                        <div style="font-size: 12px; color: var(--gray-500);">3h ago • 🌐</div>
+                    </div>
+                </div>
+                
+                <div style="font-size: 15px; line-height: 1.5; margin-bottom: 15px;">
+                    Excited to announce that we just released a major update to our design system! It includes new components, improved accessibility, and better documentation. Check out the link below for all the details.
+                </div>
+                
+                <div style="background-color: var(--gray-100); border-radius: 8px; padding: 15px; margin-bottom: 15px; border-left: 4px solid var(--primary-light);">
+                    <div style="font-weight: 600; font-size: 14px; margin-bottom: 5px;">TechCorp Design System 2.0</div>
+                    <div style="font-size: 13px; color: var(--gray-600); margin-bottom: 5px;">A comprehensive set of design principles, guidelines and components for building consistent products.</div>
+                    <div style="font-size: 12px; color: var(--gray-500);">techcorp.design/system</div>
+                </div>
+                
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: 10px; font-size: 13px; color: var(--gray-600);">
+                    <div>
+                        👍 ❤️ 🎉 <span>68</span>
+                    </div>
+                    <div>
+                        24 comments • 7 shares
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; padding-top: 5px;">
+                    <button style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; border-radius: 4px; border: none; background-color: transparent; color: var(--gray-600); font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                        <span>👍</span> Like
+                    </button>
+                    <button style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; border-radius: 4px; border: none; background-color: transparent; color: var(--gray-600); font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                        <span>💬</span> Comment
+                    </button>
+                    <button style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; border-radius: 4px; border: none; background-color: transparent; color: var(--gray-600); font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                        <span>↪️</span> Share
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Feed post 2 -->
+            <div style="background-color: white; border-radius: 12px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <div style="display: flex; margin-bottom: 15px;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background-color: var(--gray-300); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 16px;">AK</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 15px;">Alex Kumar</div>
+                        <div style="font-size: 13px; color: var(--gray-600);">Frontend Developer at WebTech</div>
+                        <div style="font-size: 12px; color: var(--gray-500);">1d ago • 🌐</div>
+                    </div>
+                </div>
+                
+                <div style="font-size: 15px; line-height: 1.5; margin-bottom: 15px;">
+                    I'm currently working on a side project to improve my skills with React and TypeScript. Here's a screenshot of the dashboard I designed. Would love some feedback from fellow developers!
+                </div>
+                
+                <div style="width: 100%; height: 250px; background-color: var(--gray-200); border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">
+                    Dashboard Screenshot
+                </div>
+                
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: 10px; font-size: 13px; color: var(--gray-600);">
+                    <div>
+                        👍 🔥 💯 <span>42</span>
+                    </div>
+                    <div>
+                        15 comments • 3 shares
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; padding-top: 5px;">
+                    <button style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; border-radius: 4px; border: none; background-color: transparent; color: var(--gray-600); font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                        <span>👍</span> Like
+                    </button>
+                    <button style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; border-radius: 4px; border: none; background-color: transparent; color: var(--gray-600); font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                        <span>💬</span> Comment
+                    </button>
+                    <button style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; border-radius: 4px; border: none; background-color: transparent; color: var(--gray-600); font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                        <span>↪️</span> Share
+                    </button>
+                </div>
+                
+                <!-- Comment on post 2 -->
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--gray-200);">
+                    <div style="display: flex; margin-bottom: 10px;">
+                        <div style="width: 35px; height: 35px; border-radius: 50%; background-color: var(--gray-300); margin-right: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 14px;">RW</div>
+                        <div>
+                            <div style="font-weight: 600; font-size: 14px;">Robert Wilson <span style="font-weight: normal; color: var(--gray-500); font-size: 12px;">• Senior Developer • 1d ago</span></div>
+                            <div style="font-size: 14px; margin-bottom: 5px;">This looks great! I really like the clean layout. Have you considered adding a dark mode toggle?</div>
+                            <div style="display: flex; gap: 15px;">
+                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Like (3)</div>
+                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Reply</div>
+                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Message</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; margin-bottom: 10px;">
+                        <div style="width: 35px; height: 35px; border-radius: 50%; background-color: var(--primary); margin-right: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 14px;">JD</div>
+                        <div style="flex: 1;">
+                            <input type="text" placeholder="Write a comment..." style="width: 100%; padding: 10px 15px; border-radius: 20px; border: 1px solid var(--gray-300); background-color: var(--gray-100); font-size: 14px; outline: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feed post 3 (Job shared) -->
+            <div style="background-color: white; border-radius: 12px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <div style="display: flex; margin-bottom: 15px;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background-color: var(--gray-300); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 16px;">SL</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 15px;">Sarah Lee</div>
+                        <div style="font-size: 13px; color: var(--gray-600);">Recruiter at TechCorp</div>
+                        <div style="font-size: 12px; color: var(--gray-500);">2d ago • 🌐</div>
+                    </div>
+                </div>
+                
+                <div style="font-size: 15px; line-height: 1.5; margin-bottom: 15px;">
+                    We're looking for a talented Product Designer to join our growing team! Remote work available, competitive salary, and great benefits. Please share with anyone who might be interested. 👇
+                </div>
+                
+                <div style="background-color: var(--gray-100); border-radius: 8px; padding: 15px; margin-bottom: 15px; border-left: 4px solid var(--primary-light);">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <div style="width: 40px; height: 40px; background-color: var(--gray-200); border-radius: 8px; margin-right: 10px; display: flex; align-items: center; justify-content: center; color: var(--gray-600);">TC</div>
+                        <div>
+                            <div style="font-weight: 600; font-size: 15px;">Senior Product Designer</div>
+                            <div style="font-size: 13px; color: var(--gray-600);">TechCorp • Remote • Full-time</div>
+                        </div>
+                    </div>
+                    <button style="width: 100%; padding: 8px 0; border-radius: 6px; border: none; background-color: var(--primary); color: white; font-weight: 500; cursor: pointer; font-size: 14px;">View Job</button>
+                </div>
+                
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); margin-bottom: 10px; font-size: 13px; color: var(--gray-600);">
+                    <div>
+                        👍 🙌 <span>35</span>
+                    </div>
+                    <div>
+                        8 comments • 12 shares
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; padding-top: 5px;">
+                    <button style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; border-radius: 4px; border: none; background-color: transparent; color: var(--gray-600); font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                        <span>👍</span> Like
+                    </button>
+                    <button style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; border-radius: 4px; border: none; background-color: transparent; color: var(--gray-600); font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                        <span>💬</span> Comment
+                    </button>
+                    <button style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 0; border-radius: 4px; border: none; background-color: transparent; color: var(--gray-600); font-size: 14px; cursor: pointer; transition: all 0.2s ease;">
+                        <span>↪️</span> Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Job Detail Section with Comments -->
     <div class="job-detail-section">
         <div class="panel-header" style="display: flex; align-items: center;">
@@ -954,108 +1155,364 @@
                     <div style="width: 60px; height: 60px; background-color: var(--gray-200); border-radius: 12px; margin-right: 15px; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-size: 18px;">TC</div>
                     <div>
                         <div style="font-weight: 600; font-size: 20px;">Senior Product Designer</div>
-                        <div style="font-size: 14px; color: var(--gray-600);">TechCorp • Remote • Posted 2d ago</div>
-                    </div>
-                </div>
-                
-                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                    <span style="padding: 6px 12px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 13px;">Full-time</span>
-                    <span style="padding: 6px 12px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 13px;">Design</span>
-                    <span style="padding: 6px 12px; background-color: var(--gray-100); color: var(--gray-700); border-radius: 15px; font-size: 13px;">$90k-120k</span>
-                </div>
-                
-                <div style="font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
-                    <p style="margin-bottom: 15px;">We're looking for a talented Product Designer to join our team and help shape the future of our platform. You'll work closely with product managers, engineers, and stakeholders to design intuitive and beautiful experiences for our users.</p>
-                    
-                    <h3 style="font-size: 16px; font-weight: 600; margin: 20px 0 10px;">Responsibilities:</h3>
-                    <ul style="padding-left: 20px; margin-bottom: 15px;">
-                        <li style="margin-bottom: 8px;">Create user-centered designs by understanding business requirements, user feedback, and research</li>
-                        <li style="margin-bottom: 8px;">Create wireframes, prototypes, and high-fidelity mockups</li>
-                        <li style="margin-bottom: 8px;">Design and ship new features and improvements to existing products</li>
-                        <li style="margin-bottom: 8px;">Collaborate with cross-functional teams throughout the design process</li>
-                    </ul>
-                    
-                    <h3 style="font-size: 16px; font-weight: 600; margin: 20px 0 10px;">Requirements:</h3>
-                    <ul style="padding-left: 20px; margin-bottom: 15px;">
-                        <li style="margin-bottom: 8px;">3+ years of experience in product design</li>
-                        <li style="margin-bottom: 8px;">Strong portfolio demonstrating your design thinking and process</li>
-                        <li style="margin-bottom: 8px;">Proficiency in design tools (Figma, Sketch, etc.)</li>
-                        <li style="margin-bottom: 8px;">Experience working in cross-functional teams</li>
-                    </ul>
-                </div>
-                
-                <div style="display: flex; gap: 10px;">
-                    <button style="flex: 1; padding: 10px; border-radius: 8px; border: none; background-color: var(--primary); color: white; font-weight: 500; cursor: pointer;">Apply Now</button>
-                    <button style="padding: 10px; border-radius: 8px; border: none; background-color: var(--gray-200); color: var(--gray-700); font-weight: 500; cursor: pointer;">Share</button>
-                    <button style="padding: 10px; border-radius: 8px; border: none; background-color: var(--gray-200); color: var(--gray-700); font-weight: 500; cursor: pointer;">Message</button>
-                </div>
-            </div>
-            
-            <!-- Comments section -->
-            <div style="padding: 20px;">
-                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 15px;">Comments (8)</h3>
-                
-                <div style="margin-bottom: 20px;">
-                    <div style="display: flex; margin-bottom: 15px;">
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--gray-300); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 14px;">JD</div>
-                        <div style="flex: 1;">
-                            <input type="text" placeholder="Add a comment..." style="width: 100%; padding: 10px 15px; border-radius: 20px; border: 1px solid var(--gray-300); background-color: var(--gray-100); font-size: 14px; outline: none;">
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Comment 1 -->
-                <div style="margin-bottom: 20px;">
-                    <div style="display: flex;">
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--gray-300); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 14px;">MK</div>
-                        <div style="flex: 1;">
-                            <div style="font-weight: 600; font-size: 14px; margin-bottom: 2px;">Mia Kim <span style="font-weight: normal; color: var(--gray-500); font-size: 12px;">• UX Designer • 1d ago</span></div>
-                            <div style="font-size: 14px; margin-bottom: 8px;">I interviewed for a similar position here last month. Great team and culture! The design challenge was challenging but fair.</div>
-                            <div style="display: flex; gap: 15px;">
-                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Like (5)</div>
-                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Reply</div>
-                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Message</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Comment 2 -->
-                <div style="margin-bottom: 20px;">
-                    <div style="display: flex;">
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--gray-300); margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 14px;">TJ</div>
-                        <div style="flex: 1;">
-                            <div style="font-weight: 600; font-size: 14px; margin-bottom: 2px;">Tom Jones <span style="font-weight: normal; color: var(--gray-500); font-size: 12px;">• Product Designer at DesignHub • 2d ago</span></div>
-                            <div style="font-size: 14px; margin-bottom: 8px;">Does anyone know if they're flexible on the experience requirement? I have 2 years of experience but a strong portfolio.</div>
-                            <div style="display: flex; gap: 15px;">
-                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Like (2)</div>
-                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Reply</div>
-                                <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Message</div>
-                            </div>
-                            
-                            <!-- Reply to Comment 2 -->
-                            <div style="margin: 12px 0 0 20px; display: flex;">
-                                <div style="width: 30px; height: 30px; border-radius: 50%; background-color: var(--gray-300); margin-right: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--gray-600); font-weight: 600; font-size: 12px;">SL</div>
-                                <div>
-                                    <div style="font-weight: 600; font-size: 13px; margin-bottom: 2px;">Sarah Lee <span style="font-weight: normal; color: var(--gray-500); font-size: 12px;">• Recruiter at TechCorp • 1d ago</span></div>
-                                    <div style="font-size: 13px; margin-bottom: 8px;">Hi Tom! We're definitely flexible for the right candidate. If you have a strong portfolio, I'd encourage you to apply. Feel free to message me directly if you have any questions.</div>
-                                    <div style="display: flex; gap: 15px;">
-                                        <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Like (3)</div>
-                                        <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Reply</div>
-                                        <div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Message</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <div style="font-
     
     <script>
-        // This would normally contain interaction logic
-        // For this demo, it's a placeholder
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation buttons
+            const navButtons = document.querySelectorAll('.nav-button');
+            const sidebar = document.querySelector('.sidebar');
+            const contactsPanel = document.querySelector('.contacts-panel');
+            const chatArea = document.querySelector('.chat-area');
+            const profileSection = document.querySelector('.profile-section');
+            const jobsSection = document.querySelector('.jobs-section');
+            const jobDetailSection = document.querySelector('.job-detail-section');
+            const feedSection = document.querySelector('.feed-section');
+            
+            // Initially show messages panel and chat area
+            contactsPanel.style.display = 'flex';
+            chatArea.style.display = 'flex';
+            profileSection.style.display = 'none';
+            jobsSection.style.display = 'none';
+            jobDetailSection.style.display = 'none';
+            feedSection.style.display = 'none';
+            
+            // Navigation button clicks
+            navButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Hide all main sections
+                    contactsPanel.style.display = 'none';
+                    chatArea.style.display = 'none';
+                    profileSection.style.display = 'none';
+                    jobsSection.style.display = 'none';
+                    jobDetailSection.style.display = 'none';
+                    feedSection.style.display = 'none';
+                    
+                    // Show corresponding section based on button index
+                    switch(index) {
+                        case 0: // Messages
+                            contactsPanel.style.display = 'flex';
+                            chatArea.style.display = 'flex';
+                            break;
+                        case 1: // Network
+                            profileSection.style.display = 'flex';
+                            break;
+                        case 2: // Jobs
+                            jobsSection.style.display = 'flex';
+                            break;
+                        case 3: // Feed
+                            feedSection.style.display = 'flex';
+                            break;
+                        case 4: // Notifications
+                            // Placeholder for notifications
+                            feedSection.style.display = 'flex';
+                            break;
+                    }
+                });
+            });
+            
+            // Profile button click
+            const profileButton = document.querySelector('.profile-button');
+            profileButton.addEventListener('click', function() {
+                // Show profile section
+                contactsPanel.style.display = 'none';
+                chatArea.style.display = 'none';
+                profileSection.style.display = 'flex';
+                jobsSection.style.display = 'none';
+                jobDetailSection.style.display = 'none';
+                feedSection.style.display = 'none';
+                
+                // Update navigation buttons
+                navButtons.forEach(btn => btn.classList.remove('active'));
+            });
+            
+            // Contact item clicks
+            const contactItems = document.querySelectorAll('.contact-item');
+            contactItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all contacts
+                    contactItems.forEach(contact => contact.classList.remove('active'));
+                    // Add active class to clicked contact
+                    this.classList.add('active');
+                    
+                    // Update chat header with contact info
+                    const contactName = this.querySelector('.contact-name').textContent;
+                    document.querySelector('.chat-name').textContent = contactName;
+                    const contactInitials = this.querySelector('.contact-avatar').textContent;
+                    document.querySelector('.chat-avatar').textContent = contactInitials;
+                    
+                    // For mobile view
+                    if (window.innerWidth <= 992) {
+                        contactsPanel.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Filter tabs
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Get parent container
+                    const tabContainer = this.parentElement;
+                    // Remove active class from all tabs in this container
+                    tabContainer.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Filter content based on selected tab
+                    // This would normally filter the content below
+                    console.log('Filter selected:', this.textContent);
+                });
+            });
+            
+            // Search functionality
+            const searchInputs = document.querySelectorAll('.search-input');
+            searchInputs.forEach(input => {
+                input.addEventListener('keyup', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    console.log('Searching for:', searchTerm);
+                    
+                    // This would normally filter items based on search term
+                    if (this.closest('.contacts-panel')) {
+                        // Search in contacts
+                        const contacts = document.querySelectorAll('.contact-item');
+                        contacts.forEach(contact => {
+                            const name = contact.querySelector('.contact-name').textContent.toLowerCase();
+                            const preview = contact.querySelector('.contact-preview').textContent.toLowerCase();
+                            if (name.includes(searchTerm) || preview.includes(searchTerm)) {
+                                contact.style.display = 'flex';
+                            } else {
+                                contact.style.display = 'none';
+                            }
+                        });
+                    } else if (this.closest('.jobs-section')) {
+                        // Search in jobs
+                        console.log('Searching jobs for:', searchTerm);
+                        // Implementation for job search would go here
+                    }
+                });
+            });
+            
+            // Job card clicks
+            const jobCards = document.querySelectorAll('.job-card');
+            jobCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Show job detail section
+                    jobsSection.style.display = 'none';
+                    jobDetailSection.style.display = 'flex';
+                });
+            });
+            
+            // Back button in job detail
+            if (jobDetailSection) {
+                const backButton = jobDetailSection.querySelector('.action-button');
+                if (backButton) {
+                    backButton.addEventListener('click', function() {
+                        // Hide job detail, show jobs section
+                        jobDetailSection.style.display = 'none';
+                        jobsSection.style.display = 'flex';
+                    });
+                }
+            }
+            
+            // Comment and post form submissions
+            const chatInput = document.querySelector('.chat-input');
+            const sendButton = document.querySelector('.send-button');
+            
+            if (chatInput && sendButton) {
+                sendButton.addEventListener('click', function() {
+                    sendMessage();
+                });
+                
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+            
+            function sendMessage() {
+                if (!chatInput) return;
+                
+                const messageText = chatInput.value.trim();
+                if (messageText) {
+                    // Create new message element
+                    const messagesContainer = document.querySelector('.chat-messages');
+                    if (!messagesContainer) return;
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message sent';
+                    
+                    const messageContent = document.createElement('div');
+                    messageContent.className = 'message-content';
+                    messageContent.textContent = messageText;
+                    
+                    const messageTime = document.createElement('div');
+                    messageTime.className = 'message-time';
+                    messageTime.textContent = 'Just now';
+                    
+                    messageDiv.appendChild(messageContent);
+                    messageDiv.appendChild(messageTime);
+                    messagesContainer.appendChild(messageDiv);
+                    
+                    // Clear input field
+                    chatInput.value = '';
+                    
+                    // Scroll to bottom of chat
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+            }
+            
+            // Comment handling on posts
+            const commentInputs = document.querySelectorAll('input[placeholder="Add a comment..."], input[placeholder="Write a comment..."]');
+            commentInputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const commentText = this.value.trim();
+                        if (commentText) {
+                            // Get parent container
+                            const container = this.closest('.feed-section, .job-detail-section');
+                            
+                            // Create new comment
+                            const commentDiv = document.createElement('div');
+                            commentDiv.style.marginBottom = '20px';
+                            commentDiv.style.display = 'flex';
+                            
+                            const avatarDiv = document.createElement('div');
+                            avatarDiv.style.width = '40px';
+                            avatarDiv.style.height = '40px';
+                            avatarDiv.style.borderRadius = '50%';
+                            avatarDiv.style.backgroundColor = 'var(--primary)';
+                            avatarDiv.style.marginRight = '12px';
+                            avatarDiv.style.flexShrink = '0';
+                            avatarDiv.style.display = 'flex';
+                            avatarDiv.style.alignItems = 'center';
+                            avatarDiv.style.justifyContent = 'center';
+                            avatarDiv.style.color = 'white';
+                            avatarDiv.style.fontWeight = '600';
+                            avatarDiv.style.fontSize = '14px';
+                            avatarDiv.textContent = 'JD';
+                            
+                            const contentDiv = document.createElement('div');
+                            contentDiv.style.flex = '1';
+                            
+                            const nameDiv = document.createElement('div');
+                            nameDiv.style.fontWeight = '600';
+                            nameDiv.style.fontSize = '14px';
+                            nameDiv.style.marginBottom = '2px';
+                            nameDiv.innerHTML = 'John Doe <span style="font-weight: normal; color: var(--gray-500); font-size: 12px;">• Just now</span>';
+                            
+                            const textDiv = document.createElement('div');
+                            textDiv.style.fontSize = '14px';
+                            textDiv.style.marginBottom = '8px';
+                            textDiv.textContent = commentText;
+                            
+                            const actionsDiv = document.createElement('div');
+                            actionsDiv.style.display = 'flex';
+                            actionsDiv.style.gap = '15px';
+                            actionsDiv.innerHTML = '<div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Like</div><div style="font-size: 12px; color: var(--gray-600); cursor: pointer;">Reply</div>';
+                            
+                            contentDiv.appendChild(nameDiv);
+                            contentDiv.appendChild(textDiv);
+                            contentDiv.appendChild(actionsDiv);
+                            
+                            commentDiv.appendChild(avatarDiv);
+                            commentDiv.appendChild(contentDiv);
+                            
+                            // Insert new comment before the input form
+                            const parentElement = this.closest('div').parentElement.parentElement;
+                            parentElement.insertBefore(commentDiv, this.closest('div').parentElement);
+                            
+                            // Clear input field
+                            this.value = '';
+                        }
+                    }
+                });
+            });
+            
+            // Like, comment, share button functionality
+            const actionButtons = document.querySelectorAll('.post-button, [class^="post-actions-row"] button');
+            actionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Get button text
+                    const action = this.textContent.trim();
+                    console.log('Action:', action);
+                    
+                    if (action.includes('Like')) {
+                        // Toggle liked state
+                        this.classList.toggle('liked');
+                        if (this.classList.contains('liked')) {
+                            this.style.color = 'var(--primary)';
+                        } else {
+                            this.style.color = 'var(--gray-600)';
+                        }
+                    } else if (action.includes('Comment')) {
+                        // Focus the comment input
+                        const post = this.closest('[class^="post"]');
+                        if (post) {
+                            const commentInput = post.querySelector('input[placeholder="Write a comment..."]');
+                            if (commentInput) {
+                                commentInput.focus();
+                            } else {
+                                // Try to find any comment input
+                                const anyInput = post.querySelector('input');
+                                if (anyInput) {
+                                    anyInput.focus();
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // Make share buttons functional
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.includes('Share')) {
+                    button.addEventListener('click', function() {
+                        alert('Sharing functionality would be implemented here');
+                    });
+                }
+            });
+            
+            // Toggle mobile menu for responsive design
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 992) {
+                    // Mobile view
+                    if (contactsPanel) {
+                        contactsPanel.classList.remove('active');
+                    }
+                }
+            });
+            
+            // Make apply button functional
+            document.querySelectorAll('button').forEach(button => {
+                if (button.textContent.includes('Apply')) {
+                    button.addEventListener('click', function() {
+                        alert('Application form would open here');
+                    });
+                }
+            });
+            
+            // Add post button in feed section
+            const postInputs = document.querySelectorAll('input[placeholder="Share something with your network..."]');
+            postInputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const postText = this.value.trim();
+                        if (postText) {
+                            alert('Post creation functionality would be implemented here');
+                            this.value = '';
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
