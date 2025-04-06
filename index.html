@@ -1170,13 +1170,19 @@
             const jobDetailSection = document.querySelector('.job-detail-section');
             const feedSection = document.querySelector('.feed-section');
             
-            // Initially show messages panel and chat area
-            contactsPanel.style.display = 'flex';
-            chatArea.style.display = 'flex';
+            // Set the Feed button (index 3) as active by default
+            if (navButtons && navButtons.length > 3) {
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                navButtons[3].classList.add('active');
+            }
+            
+            // Initially show feed section by default (LinkedIn style)
+            contactsPanel.style.display = 'none';
+            chatArea.style.display = 'none';
             profileSection.style.display = 'none';
             jobsSection.style.display = 'none';
             jobDetailSection.style.display = 'none';
-            feedSection.style.display = 'none';
+            feedSection.style.display = 'flex';
             
             // Navigation button clicks
             navButtons.forEach((button, index) => {
