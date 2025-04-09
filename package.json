@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "react-scripts start",
     "dev": "nodemon server.js",
     "client": "cd client && npm start",
     "dev:all": "concurrently \"npm run dev\" \"npm run client\""
@@ -20,10 +20,25 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-scripts": "^5.0.1",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
     "nodemon": "^3.1.9"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

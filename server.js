@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 const authRoutes = require('./backend/routes/auth');
 const postRoutes = require('./backend/routes/posts');
 const messageRoutes = require('./backend/routes/messages');
-const authMiddleware = require('./middleware/auth');
+const authMiddleware = require('./backend/middleware/auth');
 
 // Load environment variables
 dotenv.config();

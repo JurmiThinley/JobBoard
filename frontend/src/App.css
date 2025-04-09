@@ -4,7 +4,8 @@ body {
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
+    color: #212529;
   }
   
   .app {
@@ -20,15 +21,26 @@ body {
     width: 100%;
     box-sizing: border-box;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+  button {
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  button:hover{
+    transform: scale(1.05);
+  }  
   
   /* Navbar Styles */
   .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #1877f2;
+    background-color: #007bff;
     color: white;
-    padding: 0 20px;
+    padding: 10px 20px;
     height: 60px;
   }
   
@@ -96,6 +108,7 @@ body {
   .auth-container h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #007bff
   }
   
   .form-group {
@@ -119,7 +132,7 @@ body {
   .auth-container button {
     width: 100%;
     padding: 10px;
-    background-color: #1877f2;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -129,7 +142,7 @@ body {
   }
   
   .auth-container button:hover {
-    background-color: #166fe5;
+    background-color: #0056b3;
   }
   
   .auth-container button:disabled {
@@ -155,6 +168,9 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    max-width: 800px;
+    margin: 20 auto;
+
   }
   
   .post {
@@ -162,6 +178,18 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   .post-header {
@@ -179,7 +207,7 @@ body {
   
   .post-content {
     margin: 15px 0;
-    line-height: 1.5;
+    line-height: 1.6;
   }
   
   .post-image {
@@ -200,9 +228,9 @@ body {
   }
   
   .post-actions button {
-    background-color: transparent;
+    background-color: #007bff;
     border: none;
-    color: #555;
+    color: white;
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
@@ -210,7 +238,7 @@ body {
   }
   
   .post-actions button:hover {
-    background-color: #f5f5f5;
+    background-color: #0056b3;
   }
   
   .post-actions button.liked {
@@ -246,7 +274,7 @@ body {
   .comment {
     margin-bottom: 10px;
     padding: 10px;
-    background-color: #f5f5f5;
+    background-color: #f8f9fa;
     border-radius: 10px;
   }
   
