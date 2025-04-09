@@ -17,6 +17,7 @@ A full-stack social networking platform inspired by [LinkedIn](https://www.linke
 
 **Frontend**
 - React
+
 **Backend**
 
 **Database**
