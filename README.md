@@ -21,6 +21,7 @@ A full-stack social networking platform inspired by [LinkedIn](https://www.linke
 **Backend**
 
 **Database**
+- MongoDB
 
 
 **Authentication**
